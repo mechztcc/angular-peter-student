@@ -1,4 +1,8 @@
-<form class="flex flex-col mx-5 md:mx-20 justify-center h-full">
+<form
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+  class="flex flex-col mx-5 md:mx-20 justify-center h-full"
+>
   <div class="text-center">
     <h1 class="text-6xl">Bem vindo!</h1>
     <span>Preencha o formulário abaixo</span>
@@ -9,6 +13,7 @@
     type="text"
     class="p-3 rounded-lg border focus:outline-none focus:border-blue-200"
     placeholder=""
+    formControlName="email"
   />
 
   <div class="relative flex flex-col">
@@ -17,6 +22,7 @@
       [type]="isPass ? 'password' : 'text'"
       class="p-3 rounded-lg border focus:outline-none focus:border-blue-200"
       placeholder=""
+      formControlName="password"
     />
 
     <button
@@ -40,6 +46,7 @@
   </div>
 
   <button
+    type="submit"
     class="bg-blue-400 mt-10 rounded-lg text-white font-semibold hover:shadow-lg p-3 hover:shadow-blue-200 hover:bg-blue-500"
   >
     ENTRAR
@@ -47,7 +54,9 @@
 
   <span class="text-center mt-5">
     Não possui uma conta?
-    <b class="text-blue-400 cursor-pointer" routerLink="/create-account">Criar conta</b>
+    <b class="text-blue-400 cursor-pointer" routerLink="/create-account"
+      >Criar conta</b
+    >
   </span>
   <span class="text-center">
     Não é Aluno?

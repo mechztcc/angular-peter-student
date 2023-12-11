@@ -6,11 +6,13 @@ import {
   faDiamond,
   faGamepad,
 } from '@fortawesome/free-solid-svg-icons';
+import { WindowService } from '../../services/window/window.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [FontAwesomeModule],
+  providers: [WindowService],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
@@ -23,10 +25,15 @@ export class NavbarComponent {
     calendar: faCalendar,
   };
 
+  constructor(private windowService: WindowService) {
+    console.log(this.isAuth);
+    
+  }
+
   get isAuth() {
-    return (
-      window.location.href.includes('login') ||
-      window.location.href.includes('create')
-    );
+    const window = this.windowService.getWindow();
+
+    return (window.location.href.includes('login') || window.location.href.includes('create'))
+    
   }
 }

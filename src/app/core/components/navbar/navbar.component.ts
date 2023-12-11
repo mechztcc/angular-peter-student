@@ -26,7 +26,12 @@ export class NavbarComponent implements OnInit {
     calendar: faCalendar,
   };
 
-  user: IUser = null;
+  user: IUser = {
+    email: 'email@email.com',
+    name: 'Nome',
+    role: 'STUDENT',
+    token: null,
+  };
 
   constructor(private windowService: WindowService) {}
 

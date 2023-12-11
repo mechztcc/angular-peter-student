@@ -25,15 +25,14 @@ export class NavbarComponent {
     calendar: faCalendar,
   };
 
-  constructor(private windowService: WindowService) {
-    console.log(this.isAuth);
-    
-  }
+  constructor(private windowService: WindowService) {}
 
   get isAuth() {
     const window = this.windowService.getWindow();
 
-    return (window.location.href.includes('login') || window.location.href.includes('create'))
-    
+    return (
+      window.location.href.includes('login') ||
+      window.location.href.includes('create')
+    );
   }
 }

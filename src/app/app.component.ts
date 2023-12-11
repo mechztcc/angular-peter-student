@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BottomBarComponent } from './core/components/bottom-bar/bottom-bar.component';
 import { NavbarComponent } from './core/components/navbar/navbar.component';
+import { NotificationsDeliveryComponent } from './core/components/notifications-delivery/notifications-delivery.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent, BottomBarComponent],
+  imports: [CommonModule, RouterOutlet, NavbarComponent, BottomBarComponent, NotificationsDeliveryComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

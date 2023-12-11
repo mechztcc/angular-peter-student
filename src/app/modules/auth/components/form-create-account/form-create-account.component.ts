@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../shared/services/auth.service';
+import { NotificationsDeliveryService } from '../../../../core/services/notifications/notifications-delivery.service';
 
 @Component({
   selector: 'app-form-create-account',
@@ -29,7 +30,8 @@ export class FormCreateAccountComponent {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private notifier: NotificationsDeliveryService
   ) {}
 
   ngOnInit(): void {
@@ -58,15 +60,14 @@ export class FormCreateAccountComponent {
       password: this.formControls['password'].value,
       role: 'STUDENT',
     };
-
-    console.log(payload);
     
-
     this.isLoading = true;
     this.authService
       .onCreateAccount(payload)
       .subscribe((data) => {
         this.router.navigate(['/login']);
+        this.notifier.success('Conta criada com sucesso!')
+
       })
       .add(() => {
         this.isLoading = false;

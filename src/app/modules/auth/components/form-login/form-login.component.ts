@@ -10,6 +10,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { NotificationsDeliveryService } from '../../../../core/services/notifications/notifications-delivery.service';
 
 @Component({
   selector: 'app-form-login',
@@ -35,7 +36,8 @@ export class FormLoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private notifier: NotificationsDeliveryService
   ) {}
 
   ngOnInit(): void {
@@ -69,6 +71,8 @@ export class FormLoginComponent implements OnInit {
         localStorage.setItem('token', user.token);
         localStorage.setItem('name', user.name);
         localStorage.setItem('email', user.email);
+
+        this.notifier.success('Login realizado com sucesso!')
 
         this.router.navigate(['/']);
       })

@@ -1,7 +1,7 @@
 @if(!isAuth) {
   <div class="flex px-5 md:px-20 mt-3">
     <div class="flex flex-col">
-      <h1 class="text-5xl font-semibold">Olá Davi</h1>
+      <h1 class="text-3xl font-semibold">Olá, {{ user.name }}</h1>
       <div class="flex">
         <fa-icon [icon]="icons.calendar"></fa-icon>
         <span class="ml-2">{{ today }}</span>

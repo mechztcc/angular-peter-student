@@ -65,7 +65,11 @@ export class FormLoginComponent implements OnInit {
     this.isLoading = true;
     this.authService
       .onLogin(payload)
-      .subscribe((data) => {
+      .subscribe(({ user }) => {
+        localStorage.setItem('token', user.token);
+        localStorage.setItem('name', user.name);
+        localStorage.setItem('email', user.email);
+
         this.router.navigate(['/']);
       })
       .add(() => {

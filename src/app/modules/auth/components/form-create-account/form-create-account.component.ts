@@ -4,13 +4,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-form-login',
+  selector: 'app-form-create-account',
   standalone: true,
   imports: [FontAwesomeModule, RouterModule],
-  templateUrl: './form-login.component.html',
-  styleUrl: './form-login.component.scss',
+  templateUrl: './form-create-account.component.html',
+  styleUrl: './form-create-account.component.scss',
 })
-export class FormLoginComponent {
+export class FormCreateAccountComponent {
   isPass: boolean = true;
 
   icons = {

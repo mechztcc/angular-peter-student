@@ -15,4 +15,12 @@ export const routes: Routes = [
         (c) => c.LoginComponent
       ),
   },
+
+  {
+    path: 'create-account',
+    loadComponent: () =>
+      import('./modules/auth/pages/create-account/create-account.component').then(
+        (c) => c.CreateAccountComponent
+      ),
+  },
 ];

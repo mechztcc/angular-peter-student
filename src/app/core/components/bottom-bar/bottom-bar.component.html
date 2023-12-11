@@ -1,11 +1,22 @@
-<div class="flex justify-between fixed bottom-0 bg-white p-5 w-full">
-  <button>
-    <fa-icon [icon]="icons.home"></fa-icon>
-  </button>
-  <button>
+@if(!isAuth) {
+<div
+  class="flex justify-between fixed bottom-0 bg-white p-3 mt-3 w-full border-t-3 rounded-lg"
+>
+  <button
+    routerLink="/"
+    class="bg-blue-400 rounded-full p-2 px-4 text-white shadow-lg shadow-blue-200"
+  >
     <fa-icon [icon]="icons.teams"></fa-icon>
+    <span class="mx-2 font-semibold">Início</span>
   </button>
-  <button>
+  <button class="text-blue-400">
     <fa-icon [icon]="icons.lessons"></fa-icon>
+    <span class="mx-2">Ranking</span>
+  </button>
+  <button class="text-blue-400" routerLink="/login">
+    <fa-icon [icon]="icons.lessons"></fa-icon>
+    <span class="mx-2">Sair</span>
   </button>
 </div>
+
+}

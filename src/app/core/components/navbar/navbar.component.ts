@@ -20,6 +20,13 @@ export class NavbarComponent {
     diamond: faDiamond,
     questions: faBook,
     game: faGamepad,
-    calendar: faCalendar
+    calendar: faCalendar,
   };
+
+  get isAuth() {
+    return (
+      window.location.href.includes('login') ||
+      window.location.href.includes('create')
+    );
+  }
 }

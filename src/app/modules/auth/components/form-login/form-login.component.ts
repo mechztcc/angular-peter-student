@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../shared/services/auth.service';
@@ -20,6 +20,7 @@ import {
 })
 export class FormLoginComponent implements OnInit {
   isPass: boolean = true;
+  isLoading: boolean = false;
 
   icons = {
     eye: faEye,
@@ -31,7 +32,11 @@ export class FormLoginComponent implements OnInit {
     return this.form.controls;
   }
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {}
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -57,7 +62,14 @@ export class FormLoginComponent implements OnInit {
       password: this.formControls['password'].value,
     };
 
-    this.authService.onLogin(payload).subscribe(console.log);
-
+    this.isLoading = true;
+    this.authService
+      .onLogin(payload)
+      .subscribe((data) => {
+        this.router.navigate(['/']);
+      })
+      .add(() => {
+        this.isLoading = false;
+      });
   }
 }

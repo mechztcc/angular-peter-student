@@ -1,64 +1,83 @@
-<form class="flex flex-col mx-5 md:mx-20 mb-20 justify-center h-full">
-    <div class="text-center">
-      <h1 class="text-6xl">Bem vindo!</h1>
-      <span>Preencha o formulário abaixo</span>
-    </div>
+<form
+  [formGroup]="form"
+  class="flex flex-col mx-5 md:mx-20 mb-20 justify-center h-full"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="text-center">
+    <h1 class="text-6xl">Bem vindo!</h1>
+    <span>Preencha o formulário abaixo</span>
+  </div>
 
-    <label for="email" class="font-semibold mt-10">Nome</label>
+  <label for="email" class="font-semibold mt-10">Nome</label>
+  <input
+    type="text"
+    class="p-3 rounded-lg border focus:outline-none focus:border-blue-200"
+    placeholder=""
+    formControlName="name"
+  />
+
+  @if(formControls['name'].invalid && formControls['name'].dirty) {
+  <small class="mt-2 text-red-400 font-semibold"> Nome inválido</small>
+  }
+
+  <label for="email" class="font-semibold mt-5">E-mail</label>
+  <input
+    type="text"
+    class="p-3 rounded-lg border focus:outline-none focus:border-blue-200"
+    placeholder=""
+    formControlName="email"
+  />
+
+  @if(formControls['email'].invalid && formControls['email'].dirty) {
+  <small class="mt-2 text-red-400 font-semibold"> E-mail inválido</small>
+  }
+
+  <div class="relative flex flex-col">
+    <label for="email" class="font-semibold mt-5">Senha</label>
     <input
-      type="text"
+      [type]="isPass ? 'password' : 'text'"
       class="p-3 rounded-lg border focus:outline-none focus:border-blue-200"
       placeholder=""
+      formControlName="password"
     />
-  
-    <label for="email" class="font-semibold mt-5">E-mail</label>
-    <input
-      type="text"
-      class="p-3 rounded-lg border focus:outline-none focus:border-blue-200"
-      placeholder=""
-    />
-  
-    <div class="relative flex flex-col">
-      <label for="email" class="font-semibold mt-5">Password</label>
-      <input
-        [type]="isPass ? 'password' : 'text'"
-        class="p-3 rounded-lg border focus:outline-none focus:border-blue-200"
-        placeholder=""
-      />
-  
-      <button
-        class="absolute bottom-3 right-3"
-        type="button"
-        (click)="isPass = !isPass"
-      >
-        @if (isPass) {
-        <fa-icon
-          [icon]="icons.eye"
-          class="bg-blue-100 text-blue-400 p-2 rounded-lg"
-        ></fa-icon>
-        } @else {
-        <fa-icon
-          [icon]="icons.slash"
-          class="bg-blue-100 text-blue-400 p-2 rounded-lg"
-        ></fa-icon>
-  
-        }
-      </button>
-    </div>
-  
+
     <button
-      class="bg-blue-400 mt-10 rounded-lg text-white font-semibold hover:shadow-lg p-3 hover:shadow-blue-200 hover:bg-blue-500"
+      class="absolute bottom-3 right-3"
+      type="button"
+      (click)="isPass = !isPass"
     >
-      ENTRAR
+      @if (isPass) {
+      <fa-icon
+        [icon]="icons.eye"
+        class="bg-blue-100 text-blue-400 p-2 rounded-lg"
+      ></fa-icon>
+      } @else {
+      <fa-icon
+        [icon]="icons.slash"
+        class="bg-blue-100 text-blue-400 p-2 rounded-lg"
+      ></fa-icon>
+
+      }
     </button>
-  
-    <span class="text-center mt-5">
-      Possui uma conta?
-      <b class="text-blue-400 cursor-pointer" routerLink="/login">Entrar</b>
-    </span>
-    <span class="text-center">
-      Não é Aluno?
-      <b class="text-blue-400">Entrar como professor</b>
-    </span>
-  </form>
-  
+  </div>
+
+  @if(formControls['password'].invalid && formControls['password'].dirty) {
+  <small class="mt-2 text-red-400 font-semibold"> Senha inválida</small>
+  }
+
+  <button
+    type="submit"
+    class="bg-blue-400 mt-10 rounded-lg text-white font-semibold hover:shadow-lg p-3 hover:shadow-blue-200 hover:bg-blue-500"
+  >
+    ENTRAR
+  </button>
+
+  <span class="text-center mt-5">
+    Possui uma conta?
+    <b class="text-blue-400 cursor-pointer" routerLink="/login">Entrar</b>
+  </span>
+  <span class="text-center">
+    Não é Aluno?
+    <b class="text-blue-400">Entrar como professor</b>
+  </span>
+</form>

@@ -16,8 +16,12 @@
     formControlName="email"
   />
 
+  @if(formControls['email'].invalid && formControls['email'].dirty) {
+  <small class="mt-2 text-red-400 font-semibold"> E-mail inválido</small>
+  }
+
   <div class="relative flex flex-col">
-    <label for="email" class="font-semibold mt-5">Password</label>
+    <label for="email" class="font-semibold mt-5">Senha</label>
     <input
       [type]="isPass ? 'password' : 'text'"
       class="p-3 rounded-lg border focus:outline-none focus:border-blue-200"
@@ -40,10 +44,13 @@
         [icon]="icons.slash"
         class="bg-blue-100 text-blue-400 p-2 rounded-lg"
       ></fa-icon>
-
       }
     </button>
   </div>
+
+  @if(formControls['password'].invalid && formControls['password'].dirty) {
+    <small class="mt-2 text-red-400 font-semibold"> Senha inválida</small>
+    }
 
   <button
     type="submit"

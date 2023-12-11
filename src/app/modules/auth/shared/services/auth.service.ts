@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser } from '../interfaces/user.interface';
 
-const api = 'auth';
 @Injectable({
   providedIn: 'root',
 })
@@ -14,6 +13,14 @@ export class AuthService {
     email: string;
     password: string;
   }): Observable<{ user: IUser }> {
-    return this.http.post<{ user: IUser }>(`${api}`, payload);
+    return this.http.post<{ user: IUser }>('auth', payload);
+  }
+
+  onCreateAccount(payload: {
+    email: string;
+    password: string;
+    name: string;
+  }): Observable<any> {
+    return this.http.post<any>('users', payload);
   }
 }

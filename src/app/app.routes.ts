@@ -19,8 +19,16 @@ export const routes: Routes = [
   {
     path: 'create-account',
     loadComponent: () =>
-      import('./modules/auth/pages/create-account/create-account.component').then(
-        (c) => c.CreateAccountComponent
+      import(
+        './modules/auth/pages/create-account/create-account.component'
+      ).then((c) => c.CreateAccountComponent),
+  },
+
+  {
+    path: 'teams',
+    loadComponent: () =>
+      import('./modules/teams/pages/ranking-page/ranking-page.component').then(
+        (c) => c.RankingPageComponent
       ),
   },
 ];

@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faBook, faDiamond, faGamepad } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBook,
+  faCalendar,
+  faDiamond,
+  faGamepad,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -10,9 +15,11 @@ import { faBook, faDiamond, faGamepad } from '@fortawesome/free-solid-svg-icons'
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
+  today = new Date().toLocaleString();
   icons = {
     diamond: faDiamond,
     questions: faBook,
-    game: faGamepad
+    game: faGamepad,
+    calendar: faCalendar
   };
 }

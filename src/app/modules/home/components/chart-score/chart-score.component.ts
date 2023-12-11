@@ -78,7 +78,7 @@ export class ChartScoreComponent {
         ],
       },
       title: {
-        text: 'Questões Realizadas',
+        text: 'Realizadas',
         align: 'left',
         style: {
           fontSize: '16px',

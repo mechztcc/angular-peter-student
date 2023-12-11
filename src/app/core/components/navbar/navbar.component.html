@@ -1,6 +1,10 @@
 <div class="flex">
   <div class="flex flex-col">
     <h1 class="text-5xl font-semibold">Olá Davi</h1>
+    <div class="flex">
+      <fa-icon [icon]="icons.calendar"></fa-icon>
+      <span class="ml-2">{{ today }}</span>
+    </div>
     <div class="flex mt-5 flex-wrap">
       <span class="bg-blue-400 shadow-blue-200 badge">
         <fa-icon [icon]="icons.diamond" class="mr-1"></fa-icon>

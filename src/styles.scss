@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500&family=Vina+Sans&display=swap");
+
+@layer components {
+  .badge {
+    @apply rounded-full  py-1 px-3  text-white font-semibold shadow-md inline-block my-1;
+  }
+}
+
+
+body {
+  font-family: 'Rajdhani';
+  
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, afterRender } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faBook,
@@ -33,16 +33,19 @@ export class NavbarComponent implements OnInit {
     token: null,
   };
 
-  constructor(private windowService: WindowService) {}
-
-  ngOnInit(): void {
-    this.user = {
-      email: localStorage.getItem('email'),
-      name: localStorage.getItem('name'),
-      role: 'STUDENT',
-      token: null,
-    };
+  constructor(private windowService: WindowService) {
+    afterRender(() => {
+      const localStorage = this.windowService.getWindow().localStorage;
+      this.user = {
+        email: localStorage.getItem('email'),
+        name: localStorage.getItem('name'),
+        role: 'STUDENT',
+        token: null,
+      };
+    });
   }
+
+  ngOnInit(): void {}
 
   get isAuth() {
     const window = this.windowService.getWindow();

@@ -3,14 +3,19 @@ import {
   HttpEvent,
   HttpInterceptorFn,
 } from '@angular/common/http';
-import { inject } from '@angular/core';
+import { afterNextRender, afterRender, inject } from '@angular/core';
 import { catchError, map, throwError } from 'rxjs';
 import { NotificationsDeliveryService } from '../services/notifications/notifications-delivery.service';
+import { WindowService } from '../services/window/window.service';
 
 export const HttpHandlerInterceptor: HttpInterceptorFn = (req, next) => {
   const notifier = inject(NotificationsDeliveryService);
+  const window = inject(WindowService);
+  const localStorage = window.getWindow().localStorage;
+  let token: string = localStorage.getItem('token');
+  afterRender(() => {
+  });
 
-  const token = localStorage.getItem('token');
   req = req.clone({
     url: `http://localhost:3000/${req.url}`,
     setHeaders: {

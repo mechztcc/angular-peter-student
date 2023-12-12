@@ -9,6 +9,10 @@
   .badge {
     @apply rounded-full  py-1 px-3  text-white font-semibold shadow-md inline-block my-1;
   }
+
+  .active {
+    @apply bg-blue-400 rounded-full p-2 px-4 text-white shadow-lg shadow-blue-200;
+  }
 }
 
 body {

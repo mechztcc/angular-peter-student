@@ -1,26 +1,35 @@
+@if(info.teams.length == 0 && !isLoading) {
 <div class="grid grid-cols-1 md:grid-cols-3">
   <div class="col-span-1 md:col-span-1">
     <app-card-join-team />
   </div>
 </div>
+} @if(info.teams.length > 0 && !isLoading) {
+<div class="grid grid-cols-1 md:grid-cols-3 mx-5 md:mx-20">
+  <div class="col-span-1 md:col-span-3">
+    <span class="text-3xl font-semibold mt-10">Meus times</span>
+  </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3">
-  <div class="col-span-1 md:col-span-1">
-    <app-card-team-member />
-  </div>
-  <div class="col-span-1 md:col-span-1">
-    <app-card-team-member />
-  </div>
-  <div class="col-span-1 md:col-span-1">
-    <app-card-team-member />
-  </div>
-  <div class="col-span-1 md:col-span-1">
-    <app-card-team-member />
-  </div>
-  <div class="col-span-1 md:col-span-1">
-    <app-card-team-member />
-  </div>
-  <div class="col-span-1 md:col-span-1">
-    <app-card-team-member />
+  <div class="flex flex-col w-full">
+    @for (item of info.teams; track $index) {
+    <div class="inline-flex rounded-lg bg-white overflow-x-scroll">
+      <button
+        class="w-full p-1 px-2 bg-blue-400 hover:shadow-lg hover:shadow-blue-200 text-white font-semibold"
+      >
+        {{ item.name }}
+      </button>
+    </div>
+    }
   </div>
 </div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 mx-5 md:mx-20">
+  @for (team of info.teams; track $index) { @for (m of team.members; track
+    $index) {
+    <div class="col-span-1 md:col-span-1">
+      <app-card-team-member />
+    </div>
+    } 
+  }
+</div>
+}

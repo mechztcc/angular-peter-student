@@ -1,16 +1,25 @@
-@if(!isAuth) {
+@if(!isAuth && windowService.getWindow().innerWidth < 700) {
 <div
   style="z-index: 11"
   class="flex justify-between fixed bottom-0 bg-white p-3 mt-3 w-full border-t-3 rounded-lg"
 >
   <button
-    routerLink="/"
-    class="bg-blue-400 rounded-full p-2 px-4 text-white shadow-lg shadow-blue-200"
+    routerLink="/home"
+    [ngClass]="{
+      active: router.includes('home'),
+      'text-blue-400': !router.includes('home')
+    }"
   >
     <fa-icon [icon]="icons.lessons"></fa-icon>
     <span class="mx-2 font-semibold">Início</span>
   </button>
-  <button class="text-blue-400" routerLink="/teams">
+  <button
+    [ngClass]="{
+      active: router.includes('teams'),
+      'text-blue-400': !router.includes('teams')
+    }"
+    routerLink="/teams"
+  >
     <fa-icon [icon]="icons.rank"></fa-icon>
     <span class="mx-2">Ranking</span>
   </button>
@@ -19,5 +28,13 @@
     <span class="mx-2">Sair</span>
   </button>
 </div>
-
+} @if(!isAuth && windowService.getWindow().innerWidth >= 700) {
+<div
+  class="flex justify-between items-center w-full bg-white p-3 fixed top-0 shadow-lg"
+>
+  <img src="assets/logo2.png" alt="" />
+  <button class="border p-2">
+    <fa-icon [icon]="icons.menu" [size]="'xl'"></fa-icon>
+  </button>
+</div>
 }

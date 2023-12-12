@@ -3,6 +3,8 @@ import { DOCUMENT } from '@angular/common';
 
 @Injectable()
 export class WindowService {
+
+  innerWidth: number = null;
   constructor(@Inject(DOCUMENT) private _doc: Document) {}
 
   getWindow(): Window | null {

@@ -74,7 +74,7 @@ export class FormLoginComponent implements OnInit {
 
         this.notifier.success('Login realizado com sucesso!')
 
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       })
       .add(() => {
         this.isLoading = false;

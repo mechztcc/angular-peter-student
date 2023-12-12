@@ -27,7 +27,7 @@
   @for (team of info.teams; track $index) { @for (m of team.members; track
     $index) {
     <div class="col-span-1 md:col-span-1">
-      <app-card-team-member />
+      <app-card-team-member [member]="m"/>
     </div>
     } 
   }

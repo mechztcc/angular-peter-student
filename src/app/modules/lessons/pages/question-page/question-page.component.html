@@ -1,0 +1,16 @@
+@if(questions.length) {
+<div class="flex flex-col h-screen">
+  <div class="h-1/2 bg-white flex items-start rounded-lg">
+    <h1 class="text-3xl">
+      {{ questions[0].question.title }}
+    </h1>
+  </div>
+  <div class="h-1/2 p-3 overflow-y-scroll">
+    <h3 class="text-lg">Selecione a alternativa correta:</h3>
+    @for (item of questions[0].question.alternatives; track $index) {
+    <app-alternative-button [text]="item.title"></app-alternative-button>
+    }
+  </div>
+</div>
+
+}

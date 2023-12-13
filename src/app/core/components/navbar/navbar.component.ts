@@ -51,8 +51,8 @@ export class NavbarComponent implements OnInit {
     const window = this.windowService.getWindow();
 
     return (
-      window.location.href.includes('login') ||
-      window.location.href.includes('create')
+      window.location.href.includes('home') ||
+      window.location.href.includes('teams') 
     );
   }
 }

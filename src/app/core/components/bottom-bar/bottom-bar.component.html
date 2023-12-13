@@ -33,8 +33,31 @@
   class="flex justify-between items-center w-full bg-white p-3 fixed top-0 shadow-lg"
 >
   <img src="assets/logo2.png" alt="" />
-  <button class="border p-2">
-    <fa-icon [icon]="icons.menu" [size]="'xl'"></fa-icon>
-  </button>
+
+  <div class="flex items-center">
+    <span
+      class="text-lg cursor-pointer"
+      routerLink="/home"
+      [ngClass]="{
+        active: router.includes('home'),
+        'text-blue-400': !router.includes('home')
+      }"
+    >
+      Início
+    </span>
+    <span
+      class="text-lg mx-7 cursor-pointer"
+      routerLink="/teams"
+      [ngClass]="{
+        active: router.includes('teams'),
+        'text-blue-400': !router.includes('teams')
+      }"
+    >
+      Ranking
+    </span>
+    <span class="text-lg mr-5 cursor-pointer text-blue-400" routerLink="/login">
+      Sair
+    </span>
+  </div>
 </div>
 }

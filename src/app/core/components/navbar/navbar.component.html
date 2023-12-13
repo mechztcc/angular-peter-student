@@ -1,4 +1,4 @@
-@if(!isAuth) {
+@if(isAuth) {
   <div class="flex px-5 md:px-20 mt-3">
     <div class="flex flex-col">
       <h1 class="text-3xl font-semibold">Olá, {{ user.name }}</h1>

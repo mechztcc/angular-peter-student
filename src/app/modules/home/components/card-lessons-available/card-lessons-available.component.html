@@ -1,12 +1,13 @@
 <div
-  class="p-5 rounded-lg bg-white flex flex-col justify-start items-start hover:shadow-2xl cursor-pointer"
+  routerLink="/lesson/{{ lesson.id }}"
+  class="p-5 rounded-lg bg-white flex flex-col justify-start items-start cursor-pointer hover:shadow-2xl cursor-pointer"
 >
   <fa-icon
     [icon]="icons.lesson"
     class="p-2 rounded-md text-white bg-blue-300 shadow-lg shadow-blue-100"
   ></fa-icon>
   <div class="flex flex-col mt-3">
-    <span class="text-2xl">Atividade de História</span>
-    <div class="text-gray-500">10 Questões</div>
+    <span class="text-2xl">{{ lesson.name }}</span>
+    <div class="text-gray-500">{{ lesson.questions }} Questões</div>
   </div>
 </div>

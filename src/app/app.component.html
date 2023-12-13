@@ -1,6 +1,6 @@
 <div class="relative">
   <app-notifications-delivery />
-  @if(windowService.getWindow().innerWidth >= 700) {
+  @if(windowService.getWindow().innerWidth >= 700 && isAuth) {
   <div style="height: 95px"></div>
   }
   <app-navbar />

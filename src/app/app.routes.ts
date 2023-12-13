@@ -31,4 +31,12 @@ export const routes: Routes = [
         (c) => c.RankingPageComponent
       ),
   },
+
+  {
+    path: 'lesson/:id',
+    loadComponent: () =>
+      import(
+        './modules/lessons/pages/question-page/question-page.component'
+      ).then((c) => c.QuestionPageComponent),
+  },
 ];

@@ -22,17 +22,23 @@ import { WindowService } from './core/services/window/window.service';
 })
 export class AppComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-  }
+  onResize(event: any) {}
 
   @HostListener('window:load', ['$event'])
-  onLoad(event: any) {
+  onLoad(event: any) {}
+
+  get isAuth() {
+    const window = this.windowService.getWindow();
+
+    return (
+      window.location.href.includes('home') ||
+      window.location.href.includes('teams')
+    );
   }
 
   constructor(public windowService: WindowService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   title = 'peter-student';
 }

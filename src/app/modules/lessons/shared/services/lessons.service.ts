@@ -17,4 +17,8 @@ export class LessonsService {
   onFindLesson(id: number): Observable<any> {
     return this.http.get<any>(`${api}/${id}`);
   }
+
+  onVerifyAnswer(payload: any): Observable<any> {
+    return this.http.post<any>(`questions/verify-answer`, payload);
+  }
 }

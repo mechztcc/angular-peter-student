@@ -1,7 +1,13 @@
 <button
-  class="my-1 flex justify-center bg-red-400 rounded-lg p-3 w-full text-white font-semibold hover:shadow-lg hover:shadow-red-200"
+  (click)="onValidate()"
+  [ngClass]="{
+    'bg-red-400 text-white': !alternative.isCorrect && isValid
+  }"
+  [ngClass]="{
+    'bg-green-400 text-white': alternative.isCorrect && isValid
+  }"
+  class="my-1 flex justify-center border-dashed rounded-lg p-3 w-full font-semibold border-2"
 >
   <fa-icon [icon]="icons.wrong"></fa-icon>
-  <div class="mx-2">{{ text }}</div>
+  <div class="mx-2">{{ alternative.title }}</div>
 </button>
-

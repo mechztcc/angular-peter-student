@@ -29,4 +29,8 @@ export class LessonsService {
   onCompleteLesson(id: number): Observable<any> {
     return this.http.get<any>(`${api}/complete-lesson/${id}`);
   }
+
+  onVerifyRunningLesson(id: number): Observable<any> {
+    return this.http.get<any>(`${api}/verify-running-lesson/${id}`);
+  }
 }

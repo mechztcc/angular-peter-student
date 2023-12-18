@@ -39,4 +39,12 @@ export const routes: Routes = [
         './modules/lessons/pages/question-page/question-page.component'
       ).then((c) => c.QuestionPageComponent),
   },
+
+  {
+    path: 'lesson/already-done',
+    loadComponent: () =>
+      import(
+        './modules/lessons/pages/lesson-already-done/lesson-already-done.component'
+      ).then((c) => c.LessonAlreadyDoneComponent),
+  },
 ];

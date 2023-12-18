@@ -1,17 +1,12 @@
-@if(questions.length) {
-<div class="flex flex-col h-screen">
-  <div class="h-1/2 bg-white flex items-start rounded-lg p-3">
-    <h1 class="text-3xl">
-      {{ questions[0].question.title }}
-    </h1>
-  </div>
-  <div class="h-1/2 p-3 overflow-y-scroll flex flex-col justify-center">
-    <span class="bg-purple-400 badge">1 / 10</span>
-    <h3 class="text-lg">Selecione a alternativa correta:</h3>
-    @for (alternative of questions[0].question.alternatives; track $index) {
-    <app-alternative-button [alternative]="alternative"></app-alternative-button>
-    }
-  </div>
+<div class="flex justify-between bg-white">
+  <button class="bg-blue-400 rounded-lg p-2 w-20 text-white font-semibold" (click)="prev()">
+    <fa-icon [icon]="icons.left"></fa-icon>
+  </button>
+  <span class="bg-purple-400 badge">{{ activated+1 }} / 10</span>
+  <button class="bg-blue-400 rounded-lg p-2 w-20 text-white font-semibold" (click)="next()">
+    <fa-icon [icon]="icons.right"></fa-icon>
+  </button>
 </div>
 
-}
+<app-question-scaffold [info]="questions[activated]"></app-question-scaffold>
+

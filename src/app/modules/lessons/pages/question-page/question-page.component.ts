@@ -1,20 +1,35 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AlternativeButtonComponent } from '../../../../core/components/alternative-button/alternative-button.component';
 import { LessonsService } from '../../shared/services/lessons.service';
-import { Router } from 'express';
-import { ActivatedRoute } from '@angular/router';
+import { QuestionScaffoldComponent } from '../../components/question-scaffold/question-scaffold.component';
+import {
+  faChevronLeft,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-question-page',
   standalone: true,
-  imports: [FontAwesomeModule, AlternativeButtonComponent],
+  imports: [
+    FontAwesomeModule,
+    AlternativeButtonComponent,
+    QuestionScaffoldComponent,
+  ],
   templateUrl: './question-page.component.html',
   styleUrl: './question-page.component.scss',
 })
 export class QuestionPageComponent implements OnInit {
   questions: any[] = [];
   isLoading: boolean = false;
+
+  icons = {
+    left: faChevronLeft,
+    right: faChevronRight,
+  };
+
+  activated: number = 0;
 
   response: {
     alternativeId: number;
@@ -28,6 +43,18 @@ export class QuestionPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.find();
+  }
+
+  prev() {
+    if (this.activated > 0) {
+      this.activated--;
+    }
+  }
+
+  next() {
+    if (this.activated < this.questions.length -1) {
+      this.activated++;
+    }
   }
 
   onSubmitAlternative(alternativeId: number) {

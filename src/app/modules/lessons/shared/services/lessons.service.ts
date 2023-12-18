@@ -21,4 +21,12 @@ export class LessonsService {
   onVerifyAnswer(payload: any): Observable<any> {
     return this.http.post<any>(`questions/verify-answer`, payload);
   }
+
+  onComputingResults(payload: any): Observable<any> {
+    return this.http.post<any>(`${api}/computing-result`, payload);
+  }
+
+  onCompleteLesson(id: number): Observable<any> {
+    return this.http.get<any>(`${api}/complete-lesson/${id}`);
+  }
 }

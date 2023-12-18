@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AlternativeButtonComponent } from '../../../../core/components/alternative-button/alternative-button.component';
 
 @Component({
@@ -8,9 +8,6 @@ import { AlternativeButtonComponent } from '../../../../core/components/alternat
   templateUrl: './question-scaffold.component.html',
   styleUrl: './question-scaffold.component.scss',
 })
-export class QuestionScaffoldComponent implements OnChanges {
+export class QuestionScaffoldComponent {
   @Input() info: any;
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.info);
-  }
 }

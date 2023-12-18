@@ -8,6 +8,7 @@ import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
+import { LessonRunnerService } from '../../shared/services/lesson-runner.service';
 
 @Component({
   selector: 'app-question-page',
@@ -21,15 +22,10 @@ import {
   styleUrl: './question-page.component.scss',
 })
 export class QuestionPageComponent implements OnInit {
-  questions: any[] = [];
-  isLoading: boolean = false;
-
   icons = {
     left: faChevronLeft,
     right: faChevronRight,
   };
-
-  activated: number = 0;
 
   response: {
     alternativeId: number;
@@ -37,60 +33,13 @@ export class QuestionPageComponent implements OnInit {
   };
 
   constructor(
-    private lessonsService: LessonsService,
+    public store: LessonRunnerService,
     private routes: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.find();
-  }
-
-  prev() {
-    if (this.activated > 0) {
-      this.activated--;
-    }
-  }
-
-  next() {
-    if (this.activated < this.questions.length -1) {
-      this.activated++;
-    }
-  }
-
-  onSubmitAlternative(alternativeId: number) {
     const { id } = this.routes.params['_value'];
 
-    const payload = {
-      lessonId: Number(id),
-      alternativeId: alternativeId,
-      questionId: this.questions[0].questionId,
-    };
-
-    this.isLoading = true;
-    this.lessonsService
-      .onVerifyAnswer(payload)
-      .subscribe((data) => {
-        this.response = {
-          alternativeId: payload.alternativeId,
-          isCorrect: data['isCorrect'],
-        };
-      })
-      .add(() => {
-        this.isLoading = false;
-      });
-  }
-
-  find() {
-    this.isLoading = true;
-    const { id } = this.routes.params['_value'];
-    this.lessonsService
-      .onFindLesson(id)
-      .subscribe((data) => {
-        this.questions = data['QuestionsOnLessons'];
-        console.log(this.questions);
-      })
-      .add(() => {
-        this.isLoading = false;
-      });
+    this.store.find(id);
   }
 }

@@ -1,12 +1,14 @@
 <div class="flex justify-between bg-white">
-  <button class="bg-blue-400 rounded-lg p-2 w-20 text-white font-semibold" (click)="prev()">
+  <button class="bg-blue-400 rounded-lg p-2 w-20 text-white font-semibold" (click)="store.prev()">
     <fa-icon [icon]="icons.left"></fa-icon>
   </button>
-  <span class="bg-purple-400 badge">{{ activated+1 }} / 10</span>
-  <button class="bg-blue-400 rounded-lg p-2 w-20 text-white font-semibold" (click)="next()">
+  <span class="bg-purple-400 badge">{{ store.activated+1 }} / {{ store.questions.length }}</span>
+  <button class="bg-blue-400 rounded-lg p-2 w-20 text-white font-semibold" (click)="store.next()">
     <fa-icon [icon]="icons.right"></fa-icon>
   </button>
 </div>
 
-<app-question-scaffold [info]="questions[activated]"></app-question-scaffold>
+@if(store.questions.length > 0) {
+<app-question-scaffold [info]="store.questions[store.activated]"></app-question-scaffold>
+}
 

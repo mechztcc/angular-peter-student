@@ -30,6 +30,7 @@ export class BottomBarComponent implements OnInit {
     const window = this.windowService.getWindow();
     return (
       window.location.href.includes('login') ||
+      window.location.href.includes('lesson') ||
       window.location.href.includes('create')
     );
   }

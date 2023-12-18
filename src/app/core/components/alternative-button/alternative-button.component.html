@@ -11,3 +11,17 @@
   <fa-icon [icon]="icons.wrong"></fa-icon>
   <div class="mx-2">{{ alternative.title }}</div>
 </button>
+
+
+@if(alert) {
+  <div class="overflow">
+    <div class="w-full p-5">
+      @if(alternative.isCorrect) {
+        <h1 class="p-3 bg-green-400 rounded-lg shadow-lg text-white font-semibold">Alternativa CORRETA</h1>
+      }
+      @if(!alternative.isCorrect) {
+        <h1 class="p-3 bg-red-400 rounded-lg shadow-lg text-white font-semibold">Alternativa ERRADA</h1>
+      }
+    </div>
+  </div>
+}

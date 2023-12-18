@@ -12,9 +12,9 @@ import { LessonRunnerService } from '../../../modules/lessons/shared/services/le
   styleUrl: './alternative-button.component.scss',
 })
 export class AlternativeButtonComponent implements OnDestroy {
-  timer: any;
   @Input() alternative: any;
 
+  timer: any;
   isValid: boolean = false;
   alert: boolean = false;
 
@@ -28,11 +28,20 @@ export class AlternativeButtonComponent implements OnDestroy {
   onValidate() {
     this.alert = true;
     this.isValid = true;
+    this.store.historyInfo.answers.push({
+      alternativeId: this.alternative.id,
+      isCorrect: this.alternative.isCorrect,
+      questionId: this.alternative.questionId,
+    });
     this.timer = setTimeout(() => {
       this.alert = false;
+      this.isValid = false;
       this.store.next();
     }, 3000);
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.alternative = null;
+    this.isValid = false;
+  }
 }

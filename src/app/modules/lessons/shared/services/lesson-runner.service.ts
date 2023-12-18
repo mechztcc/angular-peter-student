@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LessonsService } from './lessons.service';
 import { ActivatedRoute } from '@angular/router';
+import { IquestionHistoryInformation } from '../interfaces/question-history-information.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +11,14 @@ export class LessonRunnerService {
   isLoading: boolean = false;
 
   activated: number = 0;
+  done: boolean = false;
 
-  constructor(
-    private lessonsService: LessonsService,
-  ) {}
+  historyInfo: IquestionHistoryInformation = {
+    lessonId: 0,
+    answers: []
+  };
+
+  constructor(private lessonsService: LessonsService) {}
 
   prev() {
     if (this.activated > 0) {
@@ -24,6 +29,8 @@ export class LessonRunnerService {
   next() {
     if (this.activated < this.questions.length - 1) {
       this.activated++;
+    } else {
+      this.done = true;
     }
   }
 

@@ -1,14 +1,16 @@
-<div class="flex justify-between bg-white">
-  <button class="bg-blue-400 rounded-lg p-2 w-20 text-white font-semibold" (click)="store.prev()">
-    <fa-icon [icon]="icons.left"></fa-icon>
-  </button>
-  <span class="bg-purple-400 badge">{{ store.activated+1 }} / {{ store.questions.length }}</span>
-  <button class="bg-blue-400 rounded-lg p-2 w-20 text-white font-semibold" (click)="store.next()">
-    <fa-icon [icon]="icons.right"></fa-icon>
-  </button>
+@if(!store.done) {
+<div class="flex justify-center bg-white">
+  <span class="bg-purple-400 badge"
+    >{{ store.activated + 1 }} / {{ store.questions.length }}</span
+  >
 </div>
 
-@if(store.questions.length > 0) {
-<app-question-scaffold [info]="store.questions[store.activated]"></app-question-scaffold>
+} @if(store.done) {
+<div class="h-screen bg-white flex items-center justify-center">
+  <app-done-lesson></app-done-lesson>
+</div>
+} @if(store.questions.length > 0 && !store.done) {
+<app-question-scaffold
+  [info]="store.questions[store.activated]"
+></app-question-scaffold>
 }
-

@@ -9,6 +9,7 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { LessonRunnerService } from '../../shared/services/lesson-runner.service';
+import { DoneLessonComponent } from '../../components/done-lesson/done-lesson.component';
 
 @Component({
   selector: 'app-question-page',
@@ -17,6 +18,7 @@ import { LessonRunnerService } from '../../shared/services/lesson-runner.service
     FontAwesomeModule,
     AlternativeButtonComponent,
     QuestionScaffoldComponent,
+    DoneLessonComponent
   ],
   templateUrl: './question-page.component.html',
   styleUrl: './question-page.component.scss',

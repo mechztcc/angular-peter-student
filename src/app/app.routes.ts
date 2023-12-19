@@ -41,7 +41,7 @@ export const routes: Routes = [
   },
 
   {
-    path: 'lesson/already-done',
+    path: 'lesson/already-done/:id',
     loadComponent: () =>
       import(
         './modules/lessons/pages/lesson-already-done/lesson-already-done.component'

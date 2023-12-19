@@ -1,1 +1,21 @@
-<p>lesson-already-done works!</p>
+<div class="grid grid-cols-1 md:grid-cols-3">
+  <div class="col-span-1 md:col-span-1 md:col-start-2">
+    <div class="h-screen flex items-center">
+      <div
+        class="flex flex-col p-5 bg-green-400 items-start justify-center mx-10 text-white font-semibold rounded-lg"
+      >
+        <div class="rounded-lg bg-slate-50 px-2 py-2 mb-5">
+          <fa-icon [icon]="icons.game" class="text-green-400"></fa-icon>
+        </div>
+        <h1 class="text-3xl">Você já completou essa Atividade</h1>
+
+        <button
+          class="text-green-400 self-end bg-white px-2 py-1 rounded-full w-full mt-3"
+          routerLink="/home"
+        >
+          Voltar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

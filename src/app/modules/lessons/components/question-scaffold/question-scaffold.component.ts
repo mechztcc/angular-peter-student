@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AlternativeButtonComponent } from '../../../../core/components/alternative-button/alternative-button.component';
 import { WindowService } from '../../../../core/services/window/window.service';
 import { LessonsService } from '../../shared/services/lessons.service';
@@ -16,6 +16,7 @@ export class QuestionScaffoldComponent implements OnInit {
 
   constructor(
     private routes: ActivatedRoute,
+    private router: Router,
     private lessonsService: LessonsService,
     private windowService: WindowService
   ) {}
@@ -26,7 +27,9 @@ export class QuestionScaffoldComponent implements OnInit {
       .onVerifyRunningLesson(id)
       .subscribe((data) => {
         if (data.done) {
-          console.log(this.windowService.getLocation());
+          console.log(this.info);
+
+          this.router.navigate([`/lesson/already-done/${this.info.lessonId}`]);
         }
       })
       .add(() => {});

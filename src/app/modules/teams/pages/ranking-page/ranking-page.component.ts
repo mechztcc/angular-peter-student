@@ -4,11 +4,12 @@ import { CardTeamMemberComponent } from '../../components/card-team-member/card-
 import { TeamsService } from '../../shared/services/teams.service';
 import { IUser } from '../../../auth/shared/interfaces/user.interface';
 import { ITeam } from '../../shared/interfaces/team.interface';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-ranking-page',
   standalone: true,
-  imports: [CardJoinTeamComponent, CardTeamMemberComponent],
+  imports: [CardJoinTeamComponent, CardTeamMemberComponent, NgClass],
   templateUrl: './ranking-page.component.html',
   styleUrl: './ranking-page.component.scss',
 })
@@ -16,6 +17,8 @@ export class RankingPageComponent implements OnInit {
   isLoading: boolean = false;
 
   info: { user: IUser; teams: ITeam[] } = { user: null, teams: []};
+
+  selected: number = 0;
 
   constructor(private teamsService: TeamsService) {}
 

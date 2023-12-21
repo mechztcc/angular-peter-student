@@ -10,26 +10,28 @@
     <span class="text-3xl font-semibold mt-10">Meus times</span>
   </div>
 
-  <div class="flex flex-col w-full">
+  <div class="flex w-full overflow-x-scroll">
     @for (item of info.teams; track $index) {
-    <div class="inline-flex rounded-lg bg-white overflow-x-scroll">
-      <button
-        class="w-full p-1 px-2 bg-blue-400 hover:shadow-lg hover:shadow-blue-200 text-white font-semibold"
-      >
-        {{ item.name }}
-      </button>
-    </div>
+    <button
+      (click)="selected = $index"
+      [ngClass]="{
+        'bg-blue-400 hover:shadow-lg hover:shadow-blue-200 text-white':
+          selected == $index
+      }"
+      class="w-full whitespace-nowrap block mt-3 rounded-lg p-1 px-2 mx-2 font-semibold border"
+    >
+      {{ item.name }}
+    </button>
+
     }
   </div>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-3 mx-5 md:mx-20">
-  @for (team of info.teams; track $index) { @for (m of team.members; track
-    $index) {
-    <div class="col-span-1 md:col-span-1">
-      <app-card-team-member [member]="m"/>
-    </div>
-    } 
+  @for (m of info.teams[selected].members; track $index) {
+  <div class="col-span-1 md:col-span-1">
+    <app-card-team-member [member]="m" />
+  </div>
   }
 </div>
 }

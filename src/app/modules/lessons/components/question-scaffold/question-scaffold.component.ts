@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AlternativeButtonComponent } from '../../../../core/components/alternative-button/alternative-button.component';
 import { WindowService } from '../../../../core/services/window/window.service';
+import { LessonRunnerService } from '../../shared/services/lesson-runner.service';
 import { LessonsService } from '../../shared/services/lessons.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class QuestionScaffoldComponent implements OnInit {
     private routes: ActivatedRoute,
     private router: Router,
     private lessonsService: LessonsService,
-    private windowService: WindowService
+    private windowService: WindowService,
+    private store: LessonRunnerService
   ) {}
 
   ngOnInit(): void {
@@ -27,8 +29,6 @@ export class QuestionScaffoldComponent implements OnInit {
       .onVerifyRunningLesson(id)
       .subscribe((data) => {
         if (data.done) {
-          console.log(this.info);
-
           this.router.navigate([`/lesson/already-done/${this.info.lessonId}`]);
         }
       })

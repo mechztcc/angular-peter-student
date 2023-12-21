@@ -31,6 +31,15 @@ export class QuestionScaffoldComponent implements OnInit {
         if (data.done) {
           this.router.navigate([`/lesson/already-done/${this.info.lessonId}`]);
         }
+
+        const answers = data['answers'];
+        if (answers) {
+          answers.map((answer) => {
+            if (answer.questionId == this.info.question.id) {
+              this.store.next();
+            }
+          });
+        }
       })
       .add(() => {});
   }

@@ -10,20 +10,21 @@
     <span class="text-3xl font-semibold mt-10">Meus times</span>
   </div>
 
-  <div class="flex w-full overflow-x-scroll">
-    @for (item of info.teams; track $index) {
-    <button
-      (click)="selected = $index"
-      [ngClass]="{
-        'bg-blue-400 hover:shadow-lg hover:shadow-blue-200 text-white':
-          selected == $index
-      }"
-      class="w-full whitespace-nowrap block mt-3 rounded-lg p-1 px-2 mx-2 font-semibold border"
-    >
-      {{ item.name }}
-    </button>
-
-    }
+  <div class="col-span-1 md:col-span-3">
+    <div class="flex w-full overflow-x-scroll">
+      @for (item of info.teams; track $index) {
+      <button
+        (click)="selected = $index"
+        [ngClass]="{
+          'bg-blue-400 hover:shadow-lg hover:shadow-blue-200 text-white':
+            selected == $index
+        }"
+        class="w-full whitespace-nowrap block mt-3 rounded-lg p-1 px-2 mx-2 font-semibold border"
+      >
+        {{ item.name }}
+      </button>
+      }
+    </div>
   </div>
 </div>
 

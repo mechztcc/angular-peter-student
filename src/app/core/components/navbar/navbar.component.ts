@@ -8,6 +8,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { WindowService } from '../../services/window/window.service';
 import { IUser } from '../../../modules/auth/shared/interfaces/user.interface';
+import { PerformancesService } from '../../../modules/performances/shared/services/performances.service';
+import { IGeneralPerformance } from '../../../modules/performances/shared/types/general-performance.interface';
 
 @Component({
   selector: 'app-navbar',
@@ -26,33 +28,36 @@ export class NavbarComponent implements OnInit {
     calendar: faCalendar,
   };
 
-  user: IUser = {
-    email: 'email@email.com',
-    name: 'Nome',
-    role: 'STUDENT',
-    token: null,
-  };
+  isLoading: boolean = false;
+  info: IGeneralPerformance;
 
-  constructor(private windowService: WindowService) {
-    afterRender(() => {
-      const localStorage = this.windowService.getWindow().localStorage;
-      this.user = {
-        email: localStorage.getItem('email'),
-        name: localStorage.getItem('name'),
-        role: 'STUDENT',
-        token: null,
-      };
-    });
+  constructor(
+    private windowService: WindowService,
+    private performancesService: PerformancesService
+  ) {}
+
+  ngOnInit(): void {
+    this.findPerformance();
   }
 
-  ngOnInit(): void {}
+  findPerformance() {
+    this.isLoading = true;
+    this.performancesService
+      .onGeneralPerformances()
+      .subscribe((data) => {
+        this.info = data;
+      })
+      .add(() => {
+        this.isLoading = false;
+      });
+  }
 
   get isAuth() {
     const window = this.windowService.getWindow();
 
     return (
       window.location.href.includes('home') ||
-      window.location.href.includes('teams') 
+      window.location.href.includes('teams')
     );
   }
 }
